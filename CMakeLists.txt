@@ -13,20 +13,21 @@ add_executable(${PROJECT_NAME} src/main.cpp)    #Project name 이라는 실행�
 
 include(dependency.cmake)
 
-
-
-
 # 우리 프로젝트에 include / lib 관련 옵션 추가
 target_include_directories(${PROJECT_NAME} PUBLIC ${DEP_INCLUDE_DIR})
 target_link_directories(${PROJECT_NAME} PUBLIC ${DEP_LIB_DIR})
 target_link_libraries(${PROJECT_NAME} PUBLIC ${DEP_LIBS})
 
 # macos 추가
-target_link_libraries(${PROJECT_NAME} PUBLIC "-framework OpenGL")
-target_link_libraries(${PROJECT_NAME} PUBLIC "-framework Cocoa")
-target_link_libraries(${PROJECT_NAME} PUBLIC "-framework IOKit")
-target_link_libraries(${PROJECT_NAME} PUBLIC "-framework CoreVideo")
-target_link_libraries(${PROJECT_NAME} PUBLIC "-framework CoreFoundation")
+if(APPLE)
+    target_link_libraries(${PROJECT_NAME} PUBLIC "-framework OpenGL")
+    target_link_libraries(${PROJECT_NAME} PUBLIC "-framework Cocoa")
+    target_link_libraries(${PROJECT_NAME} PUBLIC "-framework IOKit")
+    target_link_libraries(${PROJECT_NAME} PUBLIC "-framework CoreVideo")
+    target_link_libraries(${PROJECT_NAME} PUBLIC "-framework CoreFoundation")
+else()
+
+endif()
 
 # c코드에서 Define 으로 사용할 수 있도록 만들어준다
 target_compile_definitions(${PROJECT_NAME} PUBLIC
