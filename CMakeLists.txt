@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-set(PROJECT_NAME cmake_project_example)
+set(PROJECT_NAME cmake_app)
 set(CMAKE_CXX_STANDARD 17)
 
 set(WINDOW_NAME "Hello, OpenGL!")
@@ -38,3 +38,8 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC
 
 # Dependency들이 먼저 build 될 수 있게 관계 설정
 add_dependencies(${PROJECT_NAME} ${DEP_LIST})   #List 안에 있는것들 먼저 컴파일 한 뒤, 우리 프로젝트 컴파일 가능
+
+
+
+# cmake -B빌드폴더 .
+# cmake --build 빌드폴더
